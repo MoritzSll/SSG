@@ -1,9 +1,10 @@
-from textnode import TextNode, TextType
+from textnode import TextNode
+from htmlnode import HTMLNode,LeafNode
 
 
 def main():
-    node = TextNode("This is some anchor text", TextType.LINK, "https://www.boot.dev")
-    print(node)
+    node = LeafNode(None,"This is a paragraph of text.")
+    print(node.to_html())
 
 
 main()
