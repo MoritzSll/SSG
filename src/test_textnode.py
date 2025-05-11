@@ -1,6 +1,6 @@
 import unittest
 
-from textnode import TextNode,TextType,text_node_to_html_node
+from textnode import *
 
 
 class TestTextNode(unittest.TestCase):
@@ -38,7 +38,6 @@ class TestTextNode(unittest.TestCase):
         self.assertEqual(html_node.tag,"img")
         self.assertEqual(html_node.value,None)
         self.assertEqual(html_node.props,{"src":"./src/img/chess","alt":"error"})
-
 
 
 if __name__ == "__main__":
