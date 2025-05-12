@@ -1,3 +1,13 @@
+from enum import Enum
+
+class BlockType(Enum):
+    PARAGRAPH = "paragraph"
+    HEADING = "heading"
+    CODE = "code"
+    QUOTE = "quote"
+    UNORDERED_LIST = "unordered_list"
+    ORDERED_LIST = "ordered_list"
+
 
 def markdown_to_blocks(markdown):
     blocks = markdown.split("\n\n")
@@ -8,3 +18,25 @@ def markdown_to_blocks(markdown):
         block = block.strip()
         filtered_blocks.append(block)
     return filtered_blocks
+
+def block_to_block_type(markdown):
+    pass
+
+def is_heading_block(markdown):
+    if markdown[0] == "#":
+        for i,char in enumerate(markdown):
+            if i < 6 and char == "#":
+                continue
+            if i < 7 and char == " ":
+                return True
+            else:
+                return False
+    return 
+
+def is_code_block(markdown):
+    return markdown.startswith("```") and markdown.endswith("```")
+
+def is_quote_block(markdown):
+    return all(line.startswith(">") for line in markdown.split("\n"))
+
+def is_unordered_
