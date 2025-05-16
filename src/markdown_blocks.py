@@ -20,7 +20,19 @@ def markdown_to_blocks(markdown):
     return filtered_blocks
 
 def block_to_block_type(markdown):
-    pass
+    if is_heading_block(markdown):
+        return BlockType.HEADING
+    elif is_code_block(markdown):
+        return BlockType.CODE
+    elif is_quote_block(markdown):
+        return BlockType.QUOTE
+    elif is_unordered_list_block(markdown):
+        return BlockType.UNORDERED_LIST
+    elif is_ordered_list_block(markdown):
+        return BlockType.ORDERED_LIST
+    else:
+        return BlockType.PARAGRAPH  
+
 
 def is_heading_block(markdown):
     if markdown[0] == "#":
@@ -39,4 +51,10 @@ def is_code_block(markdown):
 def is_quote_block(markdown):
     return all(line.startswith(">") for line in markdown.split("\n"))
 
-def is_unordered_
+def is_unordered_list_block(markdown):
+    return all(line.startswith("-") for line in markdown.split("\n"))
+
+def is_ordered_list_block(markdown):
+    return all(line.startswith(f"{i+1}. ") for i,line in enumerate(markdown.split("\n")))
+
+
