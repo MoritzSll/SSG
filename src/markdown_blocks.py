@@ -1,4 +1,6 @@
+import re
 from enum import Enum
+
 
 class BlockType(Enum):
     PARAGRAPH = "paragraph"
@@ -10,7 +12,7 @@ class BlockType(Enum):
 
 
 def markdown_to_blocks(markdown):
-    blocks = markdown.split("\n\n")
+    blocks = re.split(r"\n\s*\n", markdown)
     filtered_blocks = []
     for block in blocks:
         if block == "":
