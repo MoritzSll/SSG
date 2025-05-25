@@ -1,5 +1,5 @@
 import unittest
-from blocks_to_html import markdown_to_html_node
+from blocks_to_html import markdown_to_html_node,extract_title
 
 class test_blocks_to_html(unittest.TestCase):
     def test_paragraphs(self):
@@ -34,6 +34,16 @@ the **same** even with inline stuff
 </code></pre></div>""",
         )
 
+    def test_extract_title(self):
+
+        md = """# Hello 
+        
+        This is my Text
+        
+        -Apple
+        -Banana"""
+
+        self.assertEqual(extract_title(md),"Hello")
 
 if __name__ == "__main__":
     unittest.main()

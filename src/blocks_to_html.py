@@ -8,6 +8,7 @@ def markdown_to_html_node(markdown):
     parentNode = ParentNode("div",[],None)
     
     for block in blocks:
+        
         blocktype = block_to_block_type(block)
 
         match blocktype:
@@ -31,16 +32,12 @@ def markdown_to_html_node(markdown):
 
     return parentNode   
 
+def extract_title(markdown):
+    blocks = markdown_to_blocks(markdown)
+    for block in blocks:
+        if BlockType.HEADING == block_to_block_type(block) and type_of_heading(block) == 1:
+            return clean_heading_block_from_markdown(block,1)
 
-def create_paragraph_node(markdown):
-    parent_node = ParentNode("p",None,None)
-    parent_node.children = text_to_children(markdown)
-    return parent_node
-
-def create_quote_node(markdown):
-    parent_node = ParentNode("blockquote",None,None)
-    parent_node.children = text_to_children(markdown)
-    return parent_node
 
 def create_node(markdown,tag):
     parentNode = ParentNode(tag,None,None)
