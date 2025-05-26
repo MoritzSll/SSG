@@ -1,25 +1,25 @@
 import os 
 import shutil
 
-def copy_static_into_public(path):
+def copy_static_into_docs(path):
 
-    if not os.path.isdir("public"):
-        os.mkdir("public")
+    if not os.path.isdir("docs"):
+        os.mkdir("docs")
 
     if path == "static":
-        shutil.rmtree("public")
-        os.mkdir("public")
+        shutil.rmtree("docs")
+        os.mkdir("docs")
     
     if os.path.isfile(path):
-        public_path = path.replace("static","public")
-        shutil.copy(path,public_path)
+        docs_path = path.replace("static","docs")
+        shutil.copy(path,docs_path)
 
     if os.path.isdir(path):
         for entry in os.listdir(path):
-            public_path = path.replace("static","public")
-            if not os.path.isdir(public_path):
-                os.mkdir(public_path)
-            copy_static_into_public(os.path.join(path,entry))
+            docs_path = path.replace("static","docs")
+            if not os.path.isdir(docs_path):
+                os.mkdir(docs_path)
+            copy_static_into_docs(os.path.join(path,entry))
     
     
     
